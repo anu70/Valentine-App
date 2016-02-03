@@ -235,7 +235,7 @@ public class
 
 
     String gender_sorting;
-    String[] users_sorted,red_roses_from_girls_sorted,red_roses_from_boys_sorted,yellow_roses_from_girls_sorted,yellow_roses_from_boys_sorted;
+    String[] users_sorted,gender_sorted,red_roses_from_girls_sorted,red_roses_from_boys_sorted,yellow_roses_from_girls_sorted,yellow_roses_from_boys_sorted;
     public int sorting(Context context1, String gender_sorting1, final VolleyCallback callback){
         gender_sorting=gender_sorting1;
         context=context1;
@@ -246,7 +246,7 @@ public class
                 // Toast.makeText(context, Arrays.toString(users_sorted),Toast.LENGTH_LONG).show();
                 try {
                     JSONArray jsonArray = new JSONArray(s);
-                    users_sorted = new String[jsonArray.length()];
+                    users_sorted = new String[jsonArray.length()];gender_sorted = new String[jsonArray.length()];
                     red_roses_from_girls_sorted = new String[jsonArray.length()];red_roses_from_boys_sorted = new String[jsonArray.length()];
                     yellow_roses_from_girls_sorted = new String[jsonArray.length()]; yellow_roses_from_boys_sorted = new String[jsonArray.length()];
 
@@ -254,6 +254,7 @@ public class
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         users_sorted[i]=jsonObject.getString("name");
+                        gender_sorted[i]=jsonObject.getString("gender");
                         red_roses_from_girls_sorted[i]=jsonObject.getString("red_roses_from_girls");
                         red_roses_from_boys_sorted[i]=jsonObject.getString("red_roses_from_boys");
                         yellow_roses_from_girls_sorted[i]=jsonObject.getString("yellow_roses_from_girls");
@@ -294,8 +295,8 @@ public class
 
     RecyclerView recyclerviewlb;
     SearchView searchView;
-    ArrayList<Integer> rank_search;String[] name_search;String[] red_rose_search;String[] yellow_rose_search;
-    public void display_in_recyclerview(Context context1,RecyclerView recyclerviewlb1,SearchView searchView1,ArrayList<Integer> rank1,String[] name1,String[] red_rose1,String[] yellow_rose1){
+    ArrayList<Integer> rank_search;ArrayList<String> name_search,red_rose_search,yellow_rose_search;
+    public void display_in_recyclerview(Context context1,RecyclerView recyclerviewlb1,SearchView searchView1,ArrayList<Integer> rank1,ArrayList<String> name1,ArrayList<String> red_rose1,ArrayList<String> yellow_rose1){
         context=context1;
         recyclerviewlb=recyclerviewlb1;
         searchView=searchView1;
@@ -305,11 +306,11 @@ public class
         final ArrayList<String> RED_ROSES = new ArrayList<String >();
         final ArrayList<String> YELLOW_ROSE = new ArrayList<String>();
 
-        for (int i=0;i<name_search.length;i++){
+        for (int i=0;i<name_search.size();i++){
             RANK.add(rank_search.get(i));
-            NAME.add(name_search[i]);
-            RED_ROSES.add(red_rose_search[i]);
-            YELLOW_ROSE.add(yellow_rose_search[i]);
+            NAME.add(name_search.get(i));
+            RED_ROSES.add(red_rose_search.get(i));
+            YELLOW_ROSE.add(yellow_rose_search.get(i));
         }
         recyclerviewlb.setLayoutManager(new LinearLayoutManager(context));
         RecyclerViewAdapterlb recyclerViewAdapterlb = new RecyclerViewAdapterlb(context,RANK,NAME,RED_ROSES,YELLOW_ROSE);
@@ -326,11 +327,11 @@ public class
             public boolean onQueryTextChange(String newText) {
                 if(newText.equals("")){
                     RANK.clear();NAME.clear();RED_ROSES.clear();YELLOW_ROSE.clear();
-                    for (int i=0;i<name_search.length;i++){
+                    for (int i=0;i<name_search.size();i++){
                         RANK.add(rank_search.get(i));
-                        NAME.add(name_search[i]);
-                        RED_ROSES.add(red_rose_search[i]);
-                        YELLOW_ROSE.add(yellow_rose_search[i]);
+                        NAME.add(name_search.get(i));
+                        RED_ROSES.add(red_rose_search.get(i));
+                        YELLOW_ROSE.add(yellow_rose_search.get(i));
                     }
                     recyclerviewlb.setLayoutManager(new LinearLayoutManager(context));
                     RecyclerViewAdapterlb recyclerViewAdapterlb = new RecyclerViewAdapterlb(context,RANK,NAME,RED_ROSES,YELLOW_ROSE);
@@ -341,13 +342,13 @@ public class
                 else {
                     newText = newText.toLowerCase();
                     RANK.clear();NAME.clear();RED_ROSES.clear();YELLOW_ROSE.clear();
-                    for (int i=0;i<name_search.length;i++){
-                        String text = name_search[i].toLowerCase();
+                    for (int i=0;i<name_search.size();i++){
+                        String text = name_search.get(i).toLowerCase();
                         if(text.contains(newText)){
                             RANK.add(rank_search.get(i));
-                            NAME.add(name_search[i]);
-                            RED_ROSES.add(red_rose_search[i]);
-                            YELLOW_ROSE.add(yellow_rose_search[i]);
+                            NAME.add(name_search.get(i));
+                            RED_ROSES.add(red_rose_search.get(i));
+                            YELLOW_ROSE.add(yellow_rose_search.get(i));
                         }
                     }
                     recyclerviewlb.setLayoutManager(new LinearLayoutManager(context));

@@ -29,6 +29,7 @@ public class TwoFragment extends android.support.v4.app.Fragment{
     Functions functions;
     RecyclerView recyclerViewlb;
     ArrayList<Integer> ranks_leader_board;
+    ArrayList<String> name_leader_board,red_leader_board,yellow_leader_board;
     TextView only_from_gender;
     CheckBox filter;
     boolean is_checkbox_checked;
@@ -56,6 +57,9 @@ public class TwoFragment extends android.support.v4.app.Fragment{
         functions=new Functions();
         recyclerViewlb= (RecyclerView) view.findViewById(R.id.recycler_view_leader_board);
         ranks_leader_board=new ArrayList<Integer>();
+        name_leader_board=new ArrayList<String>();
+        red_leader_board=new ArrayList<String>();
+        yellow_leader_board = new ArrayList<String>();
         only_from_gender= (TextView) view.findViewById(R.id.only_from_gender);
         filter= (CheckBox) view.findViewById(R.id.filter);
         search= (SearchView) view.findViewById(R.id.search);
@@ -81,24 +85,60 @@ public class TwoFragment extends android.support.v4.app.Fragment{
 
 
         functions.get_current_user(TwoFragment.this.getActivity());
-        if(functions.current_user_gender.equals("female"))
-            only_from_gender.setText("Roses only from boys:");
-        else
-            only_from_gender.setText("Roses only from girls:");
-
 
         functions.get_users(TwoFragment.this.getActivity(), new Functions.VolleyCallback() {
             @Override
             public void onSuccess(final int size) {
                 // Toast.makeText(TwoFragment.this.getActivity(),"ok1",Toast.LENGTH_SHORT).show();
-                for (int i = 0; i < size; i++) {
-                    ranks_leader_board.add(i + 1);
-                }
-                functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users,functions.total_red_roses,functions.total_yellow_roses);
+
+                lbgirl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        filter.setChecked(false);
+                        only_from_gender.setText("Roses only from boys:");
+                            int rank = 1;
+                            ranks_leader_board.clear();
+                            name_leader_board.clear();
+                            red_leader_board.clear();
+                            yellow_leader_board.clear();
+                            for (int i = 0; i < size; i++) {
+                                if (functions.gender[i].equals("female")) {
+                                    ranks_leader_board.add(rank);
+                                    rank++;
+                                    name_leader_board.add(functions.users[i]);
+                                    red_leader_board.add(functions.total_red_roses[i]);
+                                    yellow_leader_board.add(functions.total_yellow_roses[i]);
+                                    functions.display_in_recyclerview(TwoFragment.this.getActivity(), recyclerViewlb, search, ranks_leader_board, name_leader_board, red_leader_board, yellow_leader_board);
+
+                                }
+                            }
+
+
+
+                    }
+                });
 
                 lbboy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        filter.setChecked(false);
+                        only_from_gender.setText("Roses only from girls:");
+                        int rank = 1;
+                        ranks_leader_board.clear();
+                        name_leader_board.clear();
+                        red_leader_board.clear();
+                        yellow_leader_board.clear();
+                        for (int i = 0; i < size; i++) {
+                            if (functions.gender[i].equals("male")) {
+                                ranks_leader_board.add(rank);
+                                rank++;
+                                name_leader_board.add(functions.users[i]);
+                                red_leader_board.add(functions.total_red_roses[i]);
+                                yellow_leader_board.add(functions.total_yellow_roses[i]);
+                                functions.display_in_recyclerview(TwoFragment.this.getActivity(), recyclerViewlb, search, ranks_leader_board, name_leader_board, red_leader_board, yellow_leader_board);
+
+                            }
+                        }
 
                     }
                 });
@@ -107,45 +147,183 @@ public class TwoFragment extends android.support.v4.app.Fragment{
                     @Override
                     public void onClick(View v) {
                         is_checkbox_checked = ((CheckBox) v).isChecked();
-
-                        if (is_checkbox_checked) {
-                            if(functions.current_user_gender.equals("female")){
-
+                        if(is_checkbox_checked){
+                            if(only_from_gender.getText().equals("Roses only from boys:")){
                                 functions.sorting(TwoFragment.this.getActivity(),"female", new Functions.VolleyCallback() {
+
                                     @Override
                                     public void onSuccess(int size_sorted) {
-                                        functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users_sorted,functions.red_roses_from_boys_sorted,functions.yellow_roses_from_boys_sorted);
+                                        ranks_leader_board.clear();name_leader_board.clear();red_leader_board.clear();yellow_leader_board.clear();
+                                        int rank =1;
+                                        for (int i=0;i<size_sorted;i++){
+                                            if(functions.gender_sorted[i].equals("female")){
+                                                ranks_leader_board.add(rank);
+                                                rank++;
+                                                name_leader_board.add(functions.users_sorted[i]);
+                                                red_leader_board.add(functions.red_roses_from_boys_sorted[i]);
+                                                yellow_leader_board.add(functions.yellow_roses_from_boys_sorted[i]);
+                                            }
+
+                                        }
+                                        functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,name_leader_board,red_leader_board,yellow_leader_board);
 
                                     }
                                 });
+
                             }
                             else{
-                                functions.sorting(TwoFragment.this.getActivity(), "male", new Functions.VolleyCallback() {
-                                    @Override
-                                    public void onSuccess(int size) {
+                                functions.sorting(TwoFragment.this.getActivity(),"male", new Functions.VolleyCallback() {
 
-                                        functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users_sorted,functions.red_roses_from_girls_sorted,functions.yellow_roses_from_girls_sorted);
+                                    @Override
+                                    public void onSuccess(int size_sorted) {
+                                        ranks_leader_board.clear();name_leader_board.clear();red_leader_board.clear();yellow_leader_board.clear();
+                                        int rank =1;
+                                        for (int i=0;i<size_sorted;i++){
+                                            if(functions.gender_sorted[i].equals("male")){
+                                                ranks_leader_board.add(rank);
+                                                rank++;
+                                                name_leader_board.add(functions.users_sorted[i]);
+                                                red_leader_board.add(functions.red_roses_from_girls_sorted[i]);
+                                                yellow_leader_board.add(functions.yellow_roses_from_girls_sorted[i]);
+                                            }
+
+                                        }
+                                        functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,name_leader_board,red_leader_board,yellow_leader_board);
 
                                     }
                                 });
-
                             }
-
-                        } else {
-                            functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users,functions.total_red_roses,functions.total_yellow_roses);
+                        }
+                        else {
+                            if(only_from_gender.getText().equals("Roses only from boys:")){
+                                lbgirl.performClick();
+                            }
+                            else {
+                                lbboy.performClick();
+                            }
                         }
 
                     }
                 });
+                if (functions.current_user_gender.equals("female")) {
+                    lbgirl.performClick();
+                } else {
+                    lbboy.performClick();
+                }
+
                 loaders_tablelayout.setVisibility(View.GONE);
                 users_tablelayout.setVisibility(View.VISIBLE);
             }
         });
 
+      /**  filter.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        is_checkbox_checked = ((CheckBox) v).isChecked();
+
+        if (is_checkbox_checked) {
+        if(only_from_gender.getText().equals("Roses only from boys:")){
+            functions.sorting(TwoFragment.this.getActivity(),"female", new Functions.VolleyCallback() {
+
+        @Override
+        public void onSuccess(int size_sorted) {
+        ranks_leader_board.clear();name_leader_board.clear();red_leader_board.clear();yellow_leader_board.clear();
+        int rank =1;
+        for (int i=0;i<size_sorted;i++){
+            if(functions.gender_sorted[i].equals("female")){
+                ranks_leader_board.add(rank);
+                rank++;
+                name_leader_board.add(functions.users_sorted[i]);
+                red_leader_board.add(functions.red_roses_from_boys_sorted[i]);
+                yellow_leader_board.add(functions.yellow_roses_from_boys_sorted[i]);
+            }
+
+        }
+        functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,name_leader_board,red_leader_board,yellow_leader_board);
+
+        }
+        });
+        }
+        else{
+            functions.sorting(TwoFragment.this.getActivity(),"male", new Functions.VolleyCallback() {
+
+                @Override
+                public void onSuccess(int size_sorted) {
+                    ranks_leader_board.clear();name_leader_board.clear();red_leader_board.clear();yellow_leader_board.clear();
+                    int rank =1;
+                    for (int i=0;i<size_sorted;i++){
+                        if(functions.gender_sorted[i].equals("male")){
+                            ranks_leader_board.add(rank);
+                            rank++;
+                            name_leader_board.add(functions.users_sorted[i]);
+                            red_leader_board.add(functions.red_roses_from_girls_sorted[i]);
+                            yellow_leader_board.add(functions.yellow_roses_from_girls_sorted[i]);
+                        }
+
+                    }
+                    functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,name_leader_board,red_leader_board,yellow_leader_board);
+
+                }
+            });
+
+        }
+
+        }
+        else {
+            lbboy.performClick();
+      //  functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users,functions.total_red_roses,functions.total_yellow_roses);
+        }
+
+        }
+        });**/
+
         //search.OnQueryTextListener
         return view;
     }
 }
+/**  filter.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+is_checkbox_checked = ((CheckBox) v).isChecked();
+
+if (is_checkbox_checked) {
+if(only_from_gender.getText().equals("Roses only from boys:")){
+
+functions.sorting(TwoFragment.this.getActivity(),"female", new Functions.VolleyCallback() {
+@Override
+public void onSuccess(int size_sorted) {
+ranks_leader_board.clear();name_leader_board.clear();red_leader_board.clear();yellow_leader_board.clear();
+int rank =1;
+for (int i=0;i<size_sorted;i++){
+ranks_leader_board.add(rank);
+rank++;
+name_leader_board.add(functions.users_sorted[i]);
+
+
+}
+functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users_sorted,functions.red_roses_from_boys_sorted,functions.yellow_roses_from_boys_sorted);
+
+}
+});
+}
+else{
+functions.sorting(TwoFragment.this.getActivity(), "male", new Functions.VolleyCallback() {
+@Override
+public void onSuccess(int size) {
+
+functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users_sorted,functions.red_roses_from_girls_sorted,functions.yellow_roses_from_girls_sorted);
+
+}
+});
+
+}
+
+} else {
+functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users,functions.total_red_roses,functions.total_yellow_roses);
+}
+
+}
+});**/
 /** if (functions.users[i].equals(functions.current_user_name) && functions.gender[i].equals("male")) {
  only_from_gender.setText("Roses only from girls:");
  Toast.makeText(TwoFragment.this.getActivity(), "ok", Toast.LENGTH_SHORT).show();
