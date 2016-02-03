@@ -25,21 +25,21 @@ public class Home extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
-    String arr1[] = {"anu","abhishek","chetan","akash"};
-    String arr2[] = {"hiiii","hellooo","hahaha","awwww"};
-    int img[] = {R.drawable.splash,R.drawable.splash,R.drawable.splash,R.drawable.splash};
-
-
+    Functions functions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        functions = new Functions();
+        functions.get_current_user(this);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(functions.current_user_name);
+        //getSupportActionBar().setLogo(functions.current_user_id);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);

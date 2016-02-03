@@ -53,12 +53,14 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"></View>
             <ImageView
+                android:id="@+id/lbgirl"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/lbgirl"
                 android:layout_gravity="center"/>
             <ImageView
+                android:id="@+id/lbboy"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

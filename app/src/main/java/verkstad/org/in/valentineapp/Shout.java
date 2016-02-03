@@ -29,7 +29,7 @@ public class Shout {
     public void setId(String id){
         this.id=id;
     }
-   public String getMessage(){
+    public String getMessage(){
        return message;
    }
     public void setMessage(String message){

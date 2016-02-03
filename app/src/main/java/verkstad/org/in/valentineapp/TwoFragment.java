@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TableLayout;
@@ -35,6 +36,7 @@ public class TwoFragment extends android.support.v4.app.Fragment{
     SearchView.OnQueryTextListener listener;
     ProgressBar loading;
     TableLayout users_tablelayout,loaders_tablelayout;
+    ImageView lbboy,lbgirl;
     public TwoFragment() {
         // Required empty public constructor
     }
@@ -61,7 +63,8 @@ public class TwoFragment extends android.support.v4.app.Fragment{
         loaders_tablelayout= (TableLayout) view.findViewById(R.id.loader_tablelayout);
         loading= (ProgressBar) view.findViewById(R.id.lb_users_progressbar);
         loading.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.DST_IN);
-
+        lbboy= (ImageView) view.findViewById(R.id.lbboy);
+        lbgirl= (ImageView) view.findViewById(R.id.lbgirl);
 
         listener = new SearchView.OnQueryTextListener(){
             @Override
@@ -93,6 +96,12 @@ public class TwoFragment extends android.support.v4.app.Fragment{
                 }
                 functions.display_in_recyclerview(TwoFragment.this.getActivity(),recyclerViewlb,search,ranks_leader_board,functions.users,functions.total_red_roses,functions.total_yellow_roses);
 
+                lbboy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
 
                 filter.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -22,10 +22,9 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.facebook.Profile;
-
 import java.util.ArrayList;
+
+import java.util.Arrays;
 
 /**
  * Created by coder on 1/15/2016.
@@ -42,14 +41,14 @@ public class OneFragment extends android.support.v4.app.Fragment {
     Button send_flowers,received_flowers,send;
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> arrayAdapter;
+   // RecyclerViewAdapterac recyclerViewAdapterac;
     TableLayout tableLayout_send,tableLayout_received;
     RecyclerView recyclerView;
-    ArrayList<String> sender_name,sent_message;
-    ArrayList<Integer> profile_pic;
+    ArrayList<String> sender_name,sent_message,sender_id;
     CheckBox anonymous_checkbox;
     String red_rose,yellow_rose;
-    ArrayList<String> friends_list;
-
+    ArrayList<String> friends_list_name,friends_list_image;
+    ArrayList<Integer> which_rose_sent;
     public OneFragment() {
         // Required empty public constructor
     }
@@ -82,11 +81,11 @@ public class OneFragment extends android.support.v4.app.Fragment {
         radiobutton_red= (RadioButton) view.findViewById(R.id.radiobutton_red);
         radiobutton_yellow= (RadioButton) view.findViewById(R.id.radiobutton_yellow);
         sender_name = new ArrayList<String>();
+        sender_id = new ArrayList<String>();
         sent_message=new ArrayList<String>();
-        profile_pic=new ArrayList<Integer>();
-        friends_list=new ArrayList<String>();
-
-
+        which_rose_sent = new ArrayList<Integer>();
+        friends_list_name=new ArrayList<String>();
+        friends_list_image=new ArrayList<String>();
 
 
         functions.get_current_user(OneFragment.this.getActivity());
@@ -116,10 +115,13 @@ public class OneFragment extends android.support.v4.app.Fragment {
             public void onSuccess(int size) {
                 for(int i=0;i<size;i++){
                     if(!functions.users[i].equals(functions.current_user_name)){
-                        friends_list.add(functions.users[i]);
+                        friends_list_name.add(functions.users[i]);
+                        friends_list_image.add(functions.id[i]);
                     }
                 }
-                arrayAdapter = new ArrayAdapter<String>(OneFragment.this.getActivity(), R.layout.support_simple_spinner_dropdown_item, friends_list);
+               // recyclerViewAdapterac = new RecyclerViewAdapterac(OneFragment.this.getActivity(),friends_list_image,friends_list_name);
+              //  autoCompleteTextView.setAdapter(recyclerViewAdapterac);
+                arrayAdapter = new ArrayAdapter<String>(OneFragment.this.getActivity(), R.layout.support_simple_spinner_dropdown_item, friends_list_name);
                 autoCompleteTextView.setAdapter(arrayAdapter);
             }
         });
@@ -163,16 +165,38 @@ public class OneFragment extends android.support.v4.app.Fragment {
             @Override
             public void onSuccess(int size) {
                 for (int i = 0; i < size; i++) {
+                    final String sender = functions.sender_json[i];
                     if (functions.receiver_json[i].equals(functions.current_user_name)) {
                         if(functions.anonymous_json[i].equals("yes")) {
-                            sender_name.add("anonymous");
+                            sender_name.add("Anonymous");
                             sent_message.add(functions.message_json[i]);
-                            profile_pic.add(R.mipmap.ic_launcher);
+                            sender_id.add(null);
+                            if(functions.red_rose_json[i].equals("1")){
+                                which_rose_sent.add(R.drawable.red_rose);
+                            }
+                            else which_rose_sent.add(R.drawable.yellow_rose);
+                            //sender_id.add();
+
                         }
                         else{
                             sender_name.add(functions.sender_json[i]);
                             sent_message.add(functions.message_json[i]);
-                            profile_pic.add(R.mipmap.ic_launcher);
+                            if(functions.red_rose_json[i].equals("1")){
+                                which_rose_sent.add(R.drawable.red_rose);
+                            }
+                            else which_rose_sent.add(R.drawable.yellow_rose);
+                            functions.get_users(OneFragment.this.getContext(), new Functions.VolleyCallback() {
+                                @Override
+                                public void onSuccess(int size_users) {
+                                    for (int j = 0; j < size_users; j++) {
+                                        if (sender.equals(functions.users[j])) {
+                                            sender_id.add(functions.id[j]);
+                                        }
+                                        // Toast.makeText(OneFragment.this.getContext(),Arrays.toString(sender_id),Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            });
                         }
                     }
                 }
@@ -185,7 +209,7 @@ public class OneFragment extends android.support.v4.app.Fragment {
                 tableLayout_received.setVisibility(View.VISIBLE);
                 tableLayout_send.setVisibility(View.GONE);
                 recyclerView.setLayoutManager(new LinearLayoutManager(OneFragment.this.getActivity()));
-                RecyclerViewAdapter adapter=new RecyclerViewAdapter(OneFragment.this.getActivity(),sender_name,sent_message,profile_pic);
+                RecyclerViewAdapter adapter=new RecyclerViewAdapter(OneFragment.this.getActivity(),sender_name,sent_message,sender_id,which_rose_sent);
                 recyclerView.setAdapter(adapter);
 
             }

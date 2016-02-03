@@ -55,26 +55,18 @@
         android:text="Message" />
 
     <!-- Rightend Duration -->
-    <!--  <TextView
-           android:id="@+id/time"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentRight="true"
-           android:layout_alignTop="@id/sender_name"
-           android:gravity="right"
-
-           android:layout_marginRight="5dip"
-           android:textSize="10dip"
-           android:textColor="#10bcc9"
-           android:textStyle="bold"/> -->
-    <ImageView
+ <!--  <TextView
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/which_rose_sent"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@id/sender_name"
         android:gravity="right"
-        android:layout_marginRight="5dip"/>
+
+        android:layout_marginRight="5dip"
+        android:textSize="10dip"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"/> -->
 
 
 </RelativeLayout>

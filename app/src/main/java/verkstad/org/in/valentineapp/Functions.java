@@ -42,12 +42,13 @@ public class
 
 
 
-    String current_user_name,current_user_gender;
+    String current_user_name,current_user_gender,current_user_id;
     public void get_current_user(Context context1){
         context=context1;
         SharedPreferences sharedPreferences = context.getSharedPreferences("current_profile", context.MODE_PRIVATE);
         current_user_name = sharedPreferences.getString("name",null);
         current_user_gender = sharedPreferences.getString("gender",null);
+        current_user_id= sharedPreferences.getString("id",null);
         //Toast.makeText(context,current_user_name,Toast.LENGTH_SHORT).show();
 
     }
