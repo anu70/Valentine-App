@@ -33,7 +33,8 @@ import java.util.Map;
 /**
  * Created by anu on 1/11/2016.
  */
-public class Functions {
+public class
+        Functions {
     Context context;
     public interface VolleyCallback{
         void onSuccess(int size);

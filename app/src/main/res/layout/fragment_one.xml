@@ -43,7 +43,7 @@
                     <ImageView
                         android:layout_width="0px"
                         android:layout_height="fill_parent"
-                        android:src="@drawable/red_rose"
+                        android:src="@drawable/yellow_rose"
                         android:layout_weight="5"/>
                     <View android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -63,15 +63,15 @@
             <ImageView
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:layout_gravity="center"
-                android:src="@drawable/girl_center"/>
+                android:src="@drawable/girl_home"/>
 
             <ImageView
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
-                android:src="@drawable/boy_center"
-                android:layout_weight="1"
+                android:src="@drawable/boy_home"
+                android:layout_weight="1.7"
                 android:layout_gravity="center"/>
 
 
@@ -121,7 +121,7 @@
                     <ImageView
                         android:layout_width="0px"
                         android:layout_height="fill_parent"
-                        android:src="@drawable/red_rose"
+                        android:src="@drawable/yellow_rose"
                         android:layout_weight="5"/>
 
                 </TableRow>
@@ -222,19 +222,21 @@
                                 android:layout_weight="1"
                                 android:layout_gravity="center"
                                 android:id="@+id/radiobutton_red"
+                                android:weightSum="1"
 
                                 />
 
 
-                            <ImageView
+                           <ImageView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/red_rose"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1"
+                                android:layout_gravity="center"/>
 
                             <View android:layout_width="0px" android:layout_weight="1"
 
-                                android:layout_height="fill_parent"></View>
+                            android:layout_height="fill_parent"></View>
 
 
                             <RadioButton
@@ -243,14 +245,17 @@
                                 android:layout_weight="1"
                                 android:layout_gravity="center"
                                 android:id="@+id/radiobutton_yellow"
+                                android:onClick="select_rose"
+
 
 
                                 />
                             <ImageView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/red_rose"
-                                android:layout_weight="1" />
+                                android:src="@drawable/yellow_rose"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"/>
                             <View android:layout_width="0px" android:layout_weight="1"
 
                                 android:layout_height="fill_parent"></View>

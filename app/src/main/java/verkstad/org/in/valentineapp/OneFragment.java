@@ -50,8 +50,6 @@ public class OneFragment extends android.support.v4.app.Fragment {
     String red_rose,yellow_rose;
     ArrayList<String> friends_list;
 
-
-
     public OneFragment() {
         // Required empty public constructor
     }
@@ -59,7 +57,6 @@ public class OneFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -197,7 +194,7 @@ public class OneFragment extends android.support.v4.app.Fragment {
         radiobutton_red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean checked = ((RadioButton) v).isChecked();
+                boolean checked = ((RadioButton)v).isChecked();
                 switch (v.getId()) {
                     case R.id.radiobutton_red:
                         if (checked) {
@@ -209,8 +206,8 @@ public class OneFragment extends android.support.v4.app.Fragment {
                         if (checked) {
                             red_rose = "0";
                             yellow_rose = "1";
-                            break;
-                        }
+                }
+                        break;
                 }
             }
         });
@@ -230,8 +227,8 @@ public class OneFragment extends android.support.v4.app.Fragment {
                         if(checked){
                             red_rose="0";
                             yellow_rose="1";
-                            break;
                         }
+                        break;
                 }
 
             }

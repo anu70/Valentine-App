@@ -23,7 +23,7 @@
                 android:layout_weight="3"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="50px"
+                android:textSize="30px"
                 />
             <View android:layout_width="0px" android:layout_weight="1"
 
@@ -81,7 +81,7 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:id="@+id/only_from_gender"
-                android:textSize="30px"
+                android:textSize="20px"
                 android:textStyle="bold"
                 android:textColor="#981522"
                 android:layout_gravity="center" />
@@ -128,7 +128,7 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/red_rose"
+                android:src="@drawable/yellow_rose"
                 android:layout_gravity="center"
                 android:layout_marginRight="15dp"/>
 

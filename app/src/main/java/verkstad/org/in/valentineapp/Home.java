@@ -118,4 +118,6 @@ public class Home extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
+
 }
