@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<android.support.v4.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="10px"
         android:background="#fff8f6">
 
@@ -128,9 +130,7 @@
             </TableLayout>
         </TableRow>
 
-        <TableRow
-            android:layout_weight="1">
-        </TableRow>
+
 
         <TableRow
             android:layout_weight="1"
@@ -164,9 +164,7 @@
                 />
         </TableRow>
 
-        <TableRow
-            android:layout_weight="1">
-        </TableRow>
+
         <TableLayout
             android:layout_weight="20"
             android:visibility="visible"
@@ -189,9 +187,7 @@
 
             </TableRow>
 
-            <TableRow
-                android:layout_weight="1">
-            </TableRow>
+
 
             <TableRow
                 android:layout_weight="1"
@@ -279,10 +275,7 @@
                     android:layout_weight="1"></View>
             </TableRow>
 
-            <TableRow
-                android:layout_weight="1">
 
-            </TableRow>
             <TableRow android:layout_weight="20"
                 android:padding="10dp"
 
@@ -302,12 +295,10 @@
 
 
             </TableRow>
-            <TableRow
-                android:layout_weight="1">
 
-            </TableRow>
 
-            <TableRow android:layout_weight="3">
+            <TableRow android:layout_weight="3"
+                >
                 <View android:layout_width="0px"
                     android:layout_height="fill_parent"
                     android:layout_weight="1.5"></View>
@@ -327,11 +318,7 @@
 
             </TableRow>
 
-            <TableRow
-                android:layout_weight="35"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </TableRow>
+
         </TableLayout>
 
         <TableLayout
@@ -355,4 +342,5 @@
 
     </TableLayout>
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

@@ -2,9 +2,7 @@ package verkstad.org.in.valentineapp;
 
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.*;
 import android.os.Process;
 import android.support.design.widget.TabLayout;
@@ -14,7 +12,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +83,7 @@ public class Home extends AppCompatActivity {
 
         adapter.addFragment(new OneFragment() ,"HOME");
         adapter.addFragment(new TwoFragment(),"LEADERS");
-        adapter.addFragment(new ThreeFragment(),"SHOUT");
+        adapter.addFragment(new TwoFragment.ThreeFragment(),"SHOUT");
         viewPager.setAdapter(adapter);
     }
 
