@@ -172,10 +172,11 @@
                 <ProgressBar
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="?android:attr/progressBarStyleSmall"
+                    style="?android:attr/progressBarStyle"
                     android:id="@+id/lb_users_progressbar"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:visibility="visible"
 
                     />
                 <View android:layout_width="0dp"

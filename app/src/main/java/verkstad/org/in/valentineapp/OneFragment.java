@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -32,7 +33,7 @@ import java.util.Arrays;
 public class OneFragment extends android.support.v4.app.Fragment {
 
     Functions functions;
-    TextView textView,red_from_girls,red_from_boys,yellow_from_girls,yellow_from_boys;
+    TextView red_from_girls,red_from_boys,yellow_from_girls,yellow_from_boys;
     EditText editText2;
     String receiver,message;
     String anonymous="no";
@@ -41,7 +42,6 @@ public class OneFragment extends android.support.v4.app.Fragment {
     Button send_flowers,received_flowers,send;
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> arrayAdapter;
-   // RecyclerViewAdapterac recyclerViewAdapterac;
     TableLayout tableLayout_send,tableLayout_received;
     RecyclerView recyclerView;
     ArrayList<String> sender_name,sent_message,sender_id;
@@ -49,6 +49,8 @@ public class OneFragment extends android.support.v4.app.Fragment {
     String red_rose,yellow_rose;
     ArrayList<String> friends_list_name,friends_list_image;
     ArrayList<Integer> which_rose_sent;
+    TableLayout table_onefragment;
+    ProgressBar loader_onefragment;
     public OneFragment() {
         // Required empty public constructor
     }
@@ -86,6 +88,8 @@ public class OneFragment extends android.support.v4.app.Fragment {
         which_rose_sent = new ArrayList<Integer>();
         friends_list_name=new ArrayList<String>();
         friends_list_image=new ArrayList<String>();
+        table_onefragment= (TableLayout) view.findViewById(R.id.table_onefragment);
+        loader_onefragment= (ProgressBar) view.findViewById(R.id.loader_onefragment);
 
 
         functions.get_current_user(OneFragment.this.getActivity());
@@ -103,6 +107,9 @@ public class OneFragment extends android.support.v4.app.Fragment {
                         yellow_from_boys.setText(functions.yellow_roses_from_boys[i]);
                     }
                 }
+                loader_onefragment.setVisibility(View.GONE);
+                table_onefragment.setVisibility(View.VISIBLE);
+
 
             }
         });
