@@ -4,6 +4,7 @@ package verkstad.org.in.valentineapp;
  * Created by coder on 1/17/2016.
  */
 
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,6 +38,7 @@ import java.util.Map;
 public class
         Functions {
     Context context;
+    Activity activity;
     public interface VolleyCallback{
         void onSuccess(int size);
     }
@@ -85,9 +88,8 @@ public class
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
-                Toast.makeText(context,volleyError.toString(),Toast.LENGTH_LONG).show();
-
+                activity = (Activity) context;
+                activity.setContentView(R.layout.internet_connection);
             }
         }){
             @Override
@@ -149,7 +151,8 @@ public class
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show();
+               activity = (Activity) context;
+                activity.setContentView(R.layout.internet_connection);
             }
         }){
             @Override
@@ -216,6 +219,8 @@ public class
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                activity= (Activity) context;
+                activity.setContentView(R.layout.internet_connection);
 
             }
         }){
@@ -273,6 +278,8 @@ public class
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                activity = (Activity) context;
+                activity.setContentView(R.layout.internet_connection);
 
             }
         }){
@@ -365,5 +372,24 @@ public class
 
 
     }
+
+    public boolean isOnline() {
+
+        Runtime runtime = Runtime.getRuntime();
+        try {
+
+            Process ipProcess = runtime.exec("ping -c 1 www.google.com");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+
+        } catch (IOException e)          { e.printStackTrace();
+        }
+        catch (InterruptedException e) { e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
 
 }
