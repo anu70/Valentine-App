@@ -16,14 +16,14 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"></View>
             <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:text="Most Popular"
+                style="@android:style/TextAppearance.DeviceDefault.Large"
+                android:layout_height="wrap_content"
+                android:id="@+id/most_popular"
                 android:textColor="#981522"
-                android:layout_weight="3"
-                android:gravity="center"
+                android:layout_weight="3"    android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="30px"
                 />
             <View android:layout_width="0px" android:layout_weight="1"
 
@@ -83,7 +83,7 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:id="@+id/only_from_gender"
-                android:textSize="20px"
+                style="@android:style/TextAppearance.DeviceDefault"
                 android:textStyle="bold"
                 android:textColor="#981522"
                 android:layout_gravity="center" />

@@ -26,8 +26,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Shout"
-        android:textColor="#b61938"
-        android:background="#fbdcda"
+
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_below="@+id/EditText"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"

@@ -30,7 +30,7 @@ public class TwoFragment extends android.support.v4.app.Fragment{
     RecyclerView recyclerViewlb;
     ArrayList<Integer> ranks_leader_board;
     ArrayList<String> name_leader_board,red_leader_board,yellow_leader_board;
-    TextView only_from_gender;
+    TextView only_from_gender,most_popular;
     CheckBox filter;
     boolean is_checkbox_checked;
     SearchView search;
@@ -61,6 +61,7 @@ public class TwoFragment extends android.support.v4.app.Fragment{
         red_leader_board=new ArrayList<String>();
         yellow_leader_board = new ArrayList<String>();
         only_from_gender= (TextView) view.findViewById(R.id.only_from_gender);
+        most_popular= (TextView) view.findViewById(R.id.most_popular);
         filter= (CheckBox) view.findViewById(R.id.filter);
         search= (SearchView) view.findViewById(R.id.search);
         users_tablelayout= (TableLayout) view.findViewById(R.id.users_tablelayout);
@@ -69,6 +70,9 @@ public class TwoFragment extends android.support.v4.app.Fragment{
         loading.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.DST_IN);
         lbboy= (ImageView) view.findViewById(R.id.lbboy);
         lbgirl= (ImageView) view.findViewById(R.id.lbgirl);
+
+       // most_popular.setText("Most Popular");
+       // most_popular.setTextSize(18*getResources().getDisplayMetrics().density);
 
         listener = new SearchView.OnQueryTextListener(){
             @Override
@@ -94,6 +98,8 @@ public class TwoFragment extends android.support.v4.app.Fragment{
                 lbgirl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        loaders_tablelayout.setVisibility(View.VISIBLE);
+                        users_tablelayout.setVisibility(View.GONE);
                         filter.setChecked(false);
                         only_from_gender.setText("Roses only from boys:");
                         int rank = 1;
@@ -121,6 +127,8 @@ public class TwoFragment extends android.support.v4.app.Fragment{
                 lbboy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        loaders_tablelayout.setVisibility(View.VISIBLE);
+                        users_tablelayout.setVisibility(View.GONE);
                         filter.setChecked(false);
                         only_from_gender.setText("Roses only from girls:");
                         int rank = 1;
@@ -148,6 +156,8 @@ public class TwoFragment extends android.support.v4.app.Fragment{
                 filter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        loaders_tablelayout.setVisibility(View.VISIBLE);
+                        users_tablelayout.setVisibility(View.GONE);
                         is_checkbox_checked = ((CheckBox) v).isChecked();
                         if (is_checkbox_checked) {
                             if (only_from_gender.getText().equals("Roses only from boys:")) {

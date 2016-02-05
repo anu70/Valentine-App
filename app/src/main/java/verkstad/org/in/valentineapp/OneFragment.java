@@ -298,6 +298,7 @@ public class OneFragment extends android.support.v4.app.Fragment {
                 }
                 autoCompleteTextView.setText("");
                 editText2.setText("");
+                anonymous_checkbox.setChecked(false);
 
             }
         });
