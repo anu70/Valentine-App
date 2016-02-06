@@ -152,9 +152,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center"
+                    android:textSize="12dp"
                     android:text="Send Flowers"
                     style="@style/Widget.AppCompat.Button.Colored"
-                    android:textSize="12dp"
                     android:id="@+id/send_flower"
                     android:onClick="send_flowers"
 
@@ -166,8 +166,8 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:text="Received Flowers"
-                    style="@style/Widget.AppCompat.Button.Colored"
                     android:textSize="12dp"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:id="@+id/received_flowers"
                     android:onClick="received_flowers"
 
@@ -176,7 +176,7 @@
 
 
             <TableLayout
-                android:layout_weight="20"
+                android:layout_weight="7"
                 android:visibility="visible"
                 android:id="@+id/send_table_layout">
                 <TableRow
@@ -193,6 +193,7 @@
                         android:padding="10dp"
                         android:background="@drawable/rounded_edittext"
                         android:id="@+id/autoCompleteTextView"
+                        android:lines="1"
                         />
 
                 </TableRow>
@@ -303,6 +304,8 @@
                         android:padding="10dp"
                         android:id="@+id/message_box"
                         android:background="@drawable/rounded_edittext"
+                        android:lines="3"
+                        android:maxLength="4"
                         />
 
 
@@ -336,7 +339,7 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="50"
+                android:layout_weight="200"
                 android:visibility="gone"
                 android:id="@+id/received_table_layout">
                 <TableRow

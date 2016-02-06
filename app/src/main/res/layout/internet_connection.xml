@@ -9,9 +9,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/ic_report_problem_black_24dp"
+        android:layout_marginTop="45dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="127dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,18 +19,17 @@
         android:text="No Internet Connection"
         android:id="@+id/textView"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retry"
         android:id="@+id/retry"
+        android:layout_marginTop="36dp"
+        android:onClick="Retry"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:onClick="Retry"/>
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

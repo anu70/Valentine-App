@@ -43,7 +43,8 @@
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_gravity="center"
-                android:background="@drawable/rounded_edittext"/>
+                android:background="@drawable/rounded_edittext"
+                />
         </TableRow>
 
         <TableRow
@@ -86,7 +87,7 @@
                 style="@android:style/TextAppearance.DeviceDefault"
                 android:textStyle="bold"
                 android:textColor="#981522"
-                android:layout_gravity="center" />
+                android:layout_gravity="left" />
             <CheckBox
                 android:layout_width="0px"
                 android:layout_height="match_parent"
